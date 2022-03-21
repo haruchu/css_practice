@@ -5,7 +5,6 @@ import { CgProfile } from 'react-icons/cg'
 import { BiPhotoAlbum } from 'react-icons/bi'
 import { FiSettings } from 'react-icons/fi'
 
-
 export const Menu1 = () => {
   const menus = [
     {
@@ -28,8 +27,15 @@ export const Menu1 = () => {
       title: "Settings",
       icon: <FiSettings/>
     },
-
   ];
+
+  const activeLink = (e) => {
+    const list = document.querySelectorAll('.list');
+    list.forEach((item) => {
+      item.classList.remove('active');
+    });
+    e.currentTarget.classList.add('active');
+  }
 
   return (
     <StyledWrapper>
@@ -37,7 +43,11 @@ export const Menu1 = () => {
         <StyledLists>
           {menus.map(({title, icon}, index) => {
             return (
-              <StyledList>
+              <StyledList
+                className={index === 0 ? 'list active' : 'list'}
+                index={index}
+                onClick={activeLink}
+              >
                 <StyledLink href='#'>
                   <StyledIcon className='icon'>
                     {icon}
@@ -49,7 +59,7 @@ export const Menu1 = () => {
               </StyledList>
             );
           })}
-          <StyledIndicater/>
+          <StyledIndicator className='indicator'/>
         </StyledLists>
       </StyledMenu>
     </StyledWrapper>
@@ -79,7 +89,6 @@ const StyledLists = styled.ul`
   display: flex;
   padding: 0 10px;
   margin: 0;
-
 `
 
 const StyledList = styled.li`
@@ -88,13 +97,38 @@ const StyledList = styled.li`
   height: 70px;
   z-index: 1;
 
-  &:hover a .icon {
+  &.active a .icon {
     transform: translateY(-35px);
   }
 
-  &:hover a .text {
+  &.active a .text {
     opacity: 1;
     transform: translateY(10px);
+  }
+
+  &:nth-child(1).active ~ .indicator
+  {
+    transform: translateX(calc(70px * 0));
+  }
+
+  &:nth-child(2).active ~ .indicator
+  {
+    transform: translateX(calc(70px * 1));
+  }
+
+  &:nth-child(3).active ~ .indicator
+  {
+    transform: translateX(calc(70px * 2));
+  }
+
+  &:nth-child(4).active ~ .indicator
+  {
+    transform: translateX(calc(70px * 3));
+  }
+
+  &:nth-child(5).active ~ .indicator
+  {
+    transform: translateX(calc(70px * 4));
   }
 `
 
@@ -128,7 +162,7 @@ const StyledText = styled.span`
   transform: translateY(20px);
 `
 
-const StyledIndicater = styled.div`
+const StyledIndicator = styled.div`
   margin: 0;
   position: absolute;
   top: -50%;
@@ -138,6 +172,7 @@ const StyledIndicater = styled.div`
   border-radius: 50%;
   border: solid 6px black;
   box-sizing: border-box;
+  transition: 0.5s;
 
   &::before {
     content: '';
