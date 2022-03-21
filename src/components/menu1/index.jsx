@@ -49,6 +49,7 @@ export const Menu1 = () => {
               </StyledList>
             );
           })}
+          <StyledIndicater/>
         </StyledLists>
       </StyledMenu>
     </StyledWrapper>
@@ -74,6 +75,7 @@ const StyledMenu = styled.div`
 `
 
 const StyledLists = styled.ul`
+  position: relative;
   display: flex;
   padding: 0 10px;
   margin: 0;
@@ -124,4 +126,40 @@ const StyledText = styled.span`
   transition: 0.5s;
   opacity: 0;
   transform: translateY(20px);
+`
+
+const StyledIndicater = styled.div`
+  margin: 0;
+  position: absolute;
+  top: -50%;
+  width: 70px;
+  height: 70px;
+  background-color: #30bfdd;
+  border-radius: 50%;
+  border: solid 6px black;
+  box-sizing: border-box;
+
+  &::before {
+    content: '';
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: -22px;
+    width: 20px;
+    height: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0px -10px black;
+  }
+
+  &::after {
+    content: '';
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    width: 20px;
+    height: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: 0px -10px black;
+  }
 `
