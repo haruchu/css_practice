@@ -1,12 +1,12 @@
 import React from "react";
-import Component from "./index";
+import {Menu1} from "./index";
 
 export default {
-  component: Component,
-  title: "components/Menu",
+  component: Menu1,
+  title: "components/Menu1",
 };
 
-const Template = (args) => <Component {...args} />;
+const Template = (args) => <Menu1 {...args} />;
 export const Default = Template.bind();
 Default.args = {
 };
