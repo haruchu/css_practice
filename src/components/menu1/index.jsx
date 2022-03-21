@@ -32,41 +32,96 @@ export const Menu1 = () => {
   ];
 
   return (
-    <StyledLists>
-      {menus.map(({title, icon}, index) => {
-        return (
-          <StyledList>
-          <StyledLink>
-            <StyledIcon>
-              {icon}
-            </StyledIcon>
-            <StyledText>
-              {title}
-            </StyledText>
-          </StyledLink>
-        </StyledList>
-        );
-      })}
-    </StyledLists>
+    <StyledWrapper>
+      <StyledMenu>
+        <StyledLists>
+          {menus.map(({title, icon}, index) => {
+            return (
+              <StyledList>
+                <StyledLink href='#'>
+                  <StyledIcon className='icon'>
+                    {icon}
+                  </StyledIcon>
+                  <StyledText className='text'>
+                    {title}
+                  </StyledText>
+                </StyledLink>
+              </StyledList>
+            );
+          })}
+        </StyledLists>
+      </StyledMenu>
+    </StyledWrapper>
   );
 };
 
+const StyledWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: black;
+`
+
+const StyledMenu = styled.div`
+  width: 400px;
+  height: 70px;
+  background-color: white;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  border-radius: 10px;
+`
+
 const StyledLists = styled.ul`
+  display: flex;
+  padding: 0 10px;
+  margin: 0;
 
 `
 
 const StyledList = styled.li`
+  list-style: none;
+  width: 70px;
+  height: 70px;
+  z-index: 1;
 
+  &:hover a .icon {
+    transform: translateY(-35px);
+  }
+
+  &:hover a .text {
+    opacity: 1;
+    transform: translateY(10px);
+  }
 `
 
 const StyledLink = styled.a`
-
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
 `
 
 const StyledIcon = styled.span`
-
+  display: block;
+  line-height: 75px;
+  font-size: 28px;
+  text-align: center;
+  transition: 0.5s;
+  color: black;
 `
 
 const StyledText = styled.span`
-
+  position: absolute;
+  color: black;
+  font-weight: 400;
+  font-size: 16px;
+  transition: 0.5s;
+  opacity: 0;
+  transform: translateY(20px);
 `
