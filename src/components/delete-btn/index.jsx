@@ -31,6 +31,15 @@ const StyledButton = styled.button`
   transition: 0.5s;
   border: none;
   position: relative;
+  overflow: hidden;
+
+  &:hover span {
+    transform: scale(2) rotate(60deg) translateY(10px);
+
+    &::before {
+      transform: rotate(-90deg) translateX(50%) translateY(-10px);
+    }
+  }
 `
 
 const StyledTrash = styled.span`
@@ -42,6 +51,7 @@ const StyledTrash = styled.span`
   background-color: #fff;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  transition: 0.5s;
 
   &::before {
     content: '';
@@ -58,4 +68,5 @@ const StyledTrash = styled.span`
     6px -2px 0 #fff;
     transition: 0.5s;
   }
+
 `
