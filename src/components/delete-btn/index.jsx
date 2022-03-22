@@ -2,10 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const DeleteBtn = () => {
+  const onClick = (e) => {
+    e.currentTarget.classList.toggle('active');
+  }
 
   return (
     <StyledWrapper>
-      <StyledButton>
+      <StyledButton onClick={onClick}>
         <StyledTrash></StyledTrash>
         <StyledButtonText>Delete</StyledButtonText>
       </StyledButton>
@@ -35,6 +38,11 @@ const StyledButton = styled.button`
   overflow: hidden;
   cursor: pointer;
 
+  &.active:hover span::before,
+  &.active span::before {
+    transform: scale(0);
+  }
+
   &:hover span {
     transform: scale(1.2) rotate(60deg) translateY(10px);
 
@@ -43,7 +51,22 @@ const StyledButton = styled.button`
     }
   }
 
-  &:hover text {
+  &.active {
+    background-color: #30bfdd;
+    span {
+      left: 50%;
+      transform: translateX(-50%) rotate(-45deg);
+      border-radius: 0;
+      width: 20px;
+      height: 10px;
+      background-color: transparent;
+      border-bottom: 2px solid #fff;
+      border-left: 2px solid #fff;
+    }
+  }
+
+  &:hover text,
+  &.active text {
     transform: translateX(-50px) translateY(-5px) scale(0);
   }
 `
