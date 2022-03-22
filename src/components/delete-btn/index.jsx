@@ -7,6 +7,7 @@ export const DeleteBtn = () => {
     <StyledWrapper>
       <StyledButton>
         <StyledTrash></StyledTrash>
+        <StyledButtonText>Delete</StyledButtonText>
       </StyledButton>
     </StyledWrapper>
   );
@@ -32,13 +33,18 @@ const StyledButton = styled.button`
   border: none;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 
   &:hover span {
-    transform: scale(2) rotate(60deg) translateY(10px);
+    transform: scale(1.2) rotate(60deg) translateY(10px);
 
     &::before {
       transform: rotate(-90deg) translateX(50%) translateY(-10px);
     }
+  }
+
+  &:hover text {
+    transform: translateX(-50px) translateY(-5px) scale(0);
   }
 `
 
@@ -68,5 +74,11 @@ const StyledTrash = styled.span`
     6px -2px 0 #fff;
     transition: 0.5s;
   }
+`
 
+const StyledButtonText = styled.text`
+  position: absolute;
+  right: 40px;
+  color: #fff;
+  transition: 0.5s;
 `
