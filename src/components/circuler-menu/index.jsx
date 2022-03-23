@@ -47,16 +47,16 @@ export const CirculerMenu = () => {
   return (
     <div css={Wrapper}>
       <div css={Menu} className='menu'>
-        <div css={Toggle} className='menu' onClick={onClick}>
+        <div css={Toggle} className='toggle' onClick={onClick}>
           <AiOutlinePlus/>
         </div>
         {menus.map(({icon}, index) => {
           return (
             <li css={List}
               className={index === 0 ? 'list active' : 'list'}
-              index={index}
+              style={{'--index': + index}}
             >
-              <a href='#'>
+              <a href='#' css={Link}>
                 <span className='icon'>
                   {icon}
                 </span>
@@ -83,13 +83,16 @@ const Menu = css`
   position: relative;
   width: 200px;
   height: 200px;
-  background-color: #0f0;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  &.active .menu {
+  &.active .toggle {
     transform: rotate(315deg);
+  }
+
+  &.active li {
+    transform: rotate(calc(360deg / 8 * var(--index)));
   }
 `
 
@@ -98,6 +101,7 @@ const Toggle = css`
   width: 60px;
   height: 60px;
   background-color: #fff;
+  color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,7 +113,30 @@ const Toggle = css`
   transition: 1.25s;
   `
 
-  const List = css`
-    position: absolute;
-    list-style: none;
-  `
+const List = css`
+  position: absolute;
+  left: 0;
+  list-style: none;
+  transform-origin: 100px;
+  transition: 0.5s;
+  transition-delay: calc(0.1s * var(--index));
+  transform: rotate(0) translateX(80px);
+`
+
+const Link = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: rotate(calc(360deg / -8 * var(--index)));
+  box-shadow: 0 3px 4px rgba(0,0,0,0.15);
+  color: #000;
+  transition: 0.5s;
+
+  &:hover {
+    color: #00f;
+  }
+`
